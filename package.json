@@ -1,0 +1,30 @@
+{
+  "name": "pex-video",
+  "version": "0.0.1",
+  "description": "Video wrapper for the PEX library",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Marcin Ignac",
+    "email": "marcin.ignac@gmail.com",
+    "url": "https://github.com/vorg"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "pex",
+    "webgl",
+    "video"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vorg/pex-video.git"
+  },
+  "homepage": "https://github.com/vorg/pex-video",
+  "bugs": {
+    "url": "https://github.com/vorg/pex-video/issues"
+  }
+}
