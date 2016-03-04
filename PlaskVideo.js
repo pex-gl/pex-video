@@ -20,6 +20,22 @@ function PlaskVideo(ctx, file) {
     this.fbo = ctx.createFramebuffer([ { texture: this.videoTexture } ]);
 
     this.program = ctx.createProgram(vert, frag);
+
+    var loops = false;
+
+    Object.defineProperty(this, 'duration', {
+        get: function() { return this.player.currentDuration(); }
+    });
+
+    Object.defineProperty(this, 'currentTime', {
+        get: function() { return this.player.currentTime(); },
+        set: function(time) { this.player.seekToTime(time); }
+    });
+
+    Object.defineProperty(this, 'loop', {
+        get: function() { return loops; },
+        set: function(state) { loops = state; this.player.setLoops(state); }
+    });
 }
 
 PlaskVideo.prototype.getTexture = function() {

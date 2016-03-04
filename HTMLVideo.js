@@ -20,6 +20,20 @@ function HTMLVideo(ctx, url) {
             this.videoElement.src = value;
         }
     });
+
+    Object.defineProperty(this, 'duration', {
+        get: function() { return this.videoElement.duration; }
+    });
+
+    Object.defineProperty(this, 'currentTime', {
+        get: function() { return this.videoElement.currentTime; },
+        set: function(time) { this.videoElement.currentTime = time; }
+    });
+
+    Object.defineProperty(this, 'loop', {
+        get: function() { return this.videoElement.loop; },
+        set: function(state) { this.videoElement.loop = state; }
+    });
 }
 
 HTMLVideo.prototype.update = function() {
