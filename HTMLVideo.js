@@ -9,8 +9,7 @@ function HTMLVideo(ctx, url) {
 
     this.videoElement = videoElement;
 
-    //TODO: handle different video size
-    this.videoTexture = ctx.createTexture2D(null, 1280, 1280);
+    this.videoTexture = ctx.createTexture2D(null, 1, 1);
 
     Object.defineProperty(this, 'src', {
         get: function() {
