@@ -13,7 +13,6 @@ function PlaskVideo(ctx, file) {
     if (file) {
         this.player.appendFile(file);
     }
-    //this.player.setRate(1); //play
 
     this.videoTexture = ctx.createTexture2D(null, 1280, 1280);
 
