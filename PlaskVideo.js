@@ -14,7 +14,7 @@ function PlaskVideo(ctx, file) {
         this.player.appendFile(file);
     }
 
-    this.videoTexture = ctx.createTexture2D(null, 1280, 1280);
+    this.videoTexture = ctx.createTexture2D(null, 1, 1);
 
     this.fbo = ctx.createFramebuffer([ { texture: this.videoTexture } ]);
 
@@ -47,6 +47,11 @@ PlaskVideo.prototype.update = function() {
     var tex = this.player.currentFrameTexture();
     var ctx = this.ctx;
     var gl = ctx.getGL();
+
+    if (tex && (tex.s1 != this.videoTexture.getWidth() || tex.t1 != this.videoTexture.getHeight())) {
+        //resize video texture to match the video size
+        this.videoTexture.update(null, tex.s1, tex.t1)
+    }
 
     gl.enable(gl.TEXTURE_RECTANGLE);
     ctx.pushState(ctx.FRAMEBUFFER_BIT | ctx.PROGRAM_BUT | ctx.TEXTURE_BIT | ctx.VERTEX_ARRAY_BIT | ctx.VIEWPORT_BIT);
