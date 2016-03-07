@@ -21,6 +21,16 @@ function PlaskVideo(ctx, file) {
     this.program = ctx.createProgram(vert, frag);
 
     var loops = false;
+    var src = '';
+
+    Object.defineProperty(this, 'src', {
+        get: function() { return src; },
+        set: function(file) {
+            src = file;
+            this.player.removeAll();
+            this.player.appendFile(file);
+        }
+    });
 
     Object.defineProperty(this, 'duration', {
         get: function() { return this.player.currentDuration(); }
@@ -42,11 +52,12 @@ PlaskVideo.prototype.getTexture = function() {
 }
 
 PlaskVideo.prototype.update = function() {
+    var tex = this.player.currentFrameTexture();
+
     if (this.player.rate() === 0 && this.player.currentDuration() > 0) {
         this.player.setRate(1);
     }
 
-    var tex = this.player.currentFrameTexture();
     var ctx = this.ctx;
     var gl = ctx.getGL();
 
@@ -70,6 +81,7 @@ PlaskVideo.prototype.update = function() {
         gl.texParameteri(gl.TEXTURE_RECTANGLE, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
         gl.texParameteri(gl.TEXTURE_RECTANGLE, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
         this.program.setUniform('uTextureSize', [tex.s1, tex.t1])
+        gl.disable(gl.TEXTURE_RECTANGLE);
     }
     this.program.setUniform('uTexture', 0);
 
