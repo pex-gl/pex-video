@@ -42,7 +42,9 @@ PlaskVideo.prototype.getTexture = function() {
 }
 
 PlaskVideo.prototype.update = function() {
-    if (this.player.rate() === 0) this.player.setRate(1);
+    if (this.player.rate() === 0 && this.player.currentDuration() > 0) {
+        this.player.setRate(1);
+    }
 
     var tex = this.player.currentFrameTexture();
     var ctx = this.ctx;
