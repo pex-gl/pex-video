@@ -1,6 +1,3 @@
-var isBrowser = require('is-browser');
+var isPlask = require('is-plask');
 
-
-
-
-module.exports = isBrowser ? require('./HTMLVideo') : require('./PlaskVideo');
+module.exports = isPlask ? require('./PlaskVideo') : require('./HTMLVideo');
