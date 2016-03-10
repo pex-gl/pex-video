@@ -20,6 +20,9 @@ function PlaskVideo(ctx, file) {
 
     this.program = ctx.createProgram(vert, frag);
 
+    this.autoplay = true;
+    this.autoplayStarted = false;
+
     var loops = false;
     var src = '';
 
@@ -45,6 +48,18 @@ function PlaskVideo(ctx, file) {
         get: function() { return loops; },
         set: function(state) { loops = state; this.player.setLoops(state); }
     });
+
+    Object.defineProperty(this, 'paused', {
+        get: function() { return this.player.rate() == 0; },
+    });
+}
+
+PlaskVideo.prototype.play = function() {
+    this.player.setRate(1);
+}
+
+PlaskVideo.prototype.pause = function() {
+    this.player.setRate(0);
 }
 
 PlaskVideo.prototype.getTexture = function() {
@@ -54,7 +69,8 @@ PlaskVideo.prototype.getTexture = function() {
 PlaskVideo.prototype.update = function() {
     var tex = this.player.currentFrameTexture();
 
-    if (this.player.rate() === 0 && this.player.currentDuration() > 0) {
+    if (this.player.rate() === 0 && this.player.currentDuration() > 0 && this.autoplay && !this.autoplayStarted) {
+        this.autoplayStarted = true;
         this.player.setRate(1);
     }
 

@@ -33,6 +33,18 @@ function HTMLVideo(ctx, url) {
         get: function() { return this.videoElement.loop; },
         set: function(state) { this.videoElement.loop = state; }
     });
+
+    Object.defineProperty(this, 'paused', {
+        get: function() { return this.videoElement.paused; },
+    });
+}
+
+HTMLVideo.prototype.play = function() {
+    this.videoElement.play();
+}
+
+HTMLVideo.prototype.pause = function() {
+    this.videoElement.pause();
 }
 
 HTMLVideo.prototype.update = function() {
