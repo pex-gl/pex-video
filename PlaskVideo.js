@@ -52,6 +52,11 @@ function PlaskVideo(ctx, file) {
     Object.defineProperty(this, 'paused', {
         get: function() { return this.player.rate() == 0; },
     });
+
+    Object.defineProperty(this, 'volume', {
+        get: function() { return this.player.volume(); },
+        set: function(time) { this.player.setVolume(time); }
+    });
 }
 
 PlaskVideo.prototype.play = function() {

@@ -37,6 +37,11 @@ function HTMLVideo(ctx, url) {
     Object.defineProperty(this, 'paused', {
         get: function() { return this.videoElement.paused; },
     });
+
+    Object.defineProperty(this, 'volume', {
+        get: function() { return this.videoElement.volume; },
+        set: function(time) { this.videoElement.volume = time; }
+    });
 }
 
 HTMLVideo.prototype.play = function() {
