@@ -1,5 +1,7 @@
 # pex-video
 
+**DEPRECATED: Currently not maintained**
+
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
 Video wrapper for the PEX library
